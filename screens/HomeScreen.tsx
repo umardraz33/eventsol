@@ -22,11 +22,19 @@ import {
   
   const HomeScreen: React.FC<Props> = ({ navigation: { navigate } }) => {
     return (
-      <SafeAreaView style ={{
-        flex:1,
-        justifyContent:"center",
-        alignItems:"center"
-      }}>
+      <>
+      <SafeAreaView style={{backgroundColor:Colors.primary,}}>
+        
+      <View style={{height:95, flex:0, justifyContent:"flex-end", paddingBottom: Spacing*2, alignItems:"center"}}>
+        <Text style={{
+              fontFamily: Font["poppins-semiBold"],
+              fontSize: FontSize.large,
+              textAlign: "center",
+              color:"white"
+            }}>Home</Text>
+      </View>
+      </SafeAreaView>
+      <SafeAreaView>
        
         <View
           style={{
@@ -62,9 +70,80 @@ import {
           >
             Explore All The Existing Events Based On Your Interest{" "}
           </Text>
+          <TouchableOpacity
+          onPress={()=>navigate("Contact")}
+          style={{
+            padding: Spacing * 2,
+            backgroundColor: Colors.primary,
+            borderRadius: Spacing,
+            marginVertical: Spacing * 3,
+            justifyContent: "center",
+            ...Platform.select({
+              ios: {
+                shadowColor: Colors.primary,
+                shadowOffset: { width: 0, height: Spacing },
+                shadowOpacity: 0.3,
+                shadowRadius: Spacing,
+              },
+              android: {
+                shadowColor: Colors.primary,
+                shadowOffset: { width: 0, height: Spacing },
+                shadowOpacity: 0.3,
+                elevation: Spacing,
+              },
+            }),
+          }}
+        >
+          <Text
+            style={{
+              fontFamily: Font["poppins-bold"],
+              color: Colors.onPrimary,
+              fontSize: FontSize.large,
+              textAlign: "center",
+            }}
+          >
+            Contact Us
+          </Text>
+        </TouchableOpacity>
+          <TouchableOpacity
+          onPress={()=>navigate("Contact")}
+          style={{
+            padding: Spacing * 2,
+            backgroundColor: Colors.primary,
+            borderRadius: Spacing,
+            marginVertical: Spacing * 3,
+            justifyContent: "center",
+            ...Platform.select({
+              ios: {
+                shadowColor: Colors.primary,
+                shadowOffset: { width: 0, height: Spacing },
+                shadowOpacity: 0.3,
+                shadowRadius: Spacing,
+              },
+              android: {
+                shadowColor: Colors.primary,
+                shadowOffset: { width: 0, height: Spacing },
+                shadowOpacity: 0.3,
+                elevation: Spacing,
+              },
+            }),
+          }}
+        >
+          <Text
+            style={{
+              fontFamily: Font["poppins-bold"],
+              color: Colors.onPrimary,
+              fontSize: FontSize.large,
+              textAlign: "center",
+            }}
+          >
+            Book Event
+          </Text>
+        </TouchableOpacity>
         </View>
         
       </SafeAreaView>
+      </>
     );
   };
   

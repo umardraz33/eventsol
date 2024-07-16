@@ -14,6 +14,7 @@ import Welcome from "../screens/WelcomeScreen";
 import HomeScreen from "../screens/HomeScreen";
 
 import { RootStackParamList } from "../types";
+import ContactScreen from "../screens/ContactScreen";
 
 const theme = {
   ...DefaultTheme,
@@ -48,6 +49,7 @@ function RootNavigator() {
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Register" component={RegisterScreen} />
       <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="Contact" component={ContactScreen} />
     </Stack.Navigator>
   );
 }
