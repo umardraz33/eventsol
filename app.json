@@ -1,14 +1,14 @@
 {
   "expo": {
-    "name": "On Boarding RN",
-    "slug": "OnBoarding-React-Native-App",
+    "name": "EventSol",
+    "slug": "Eventsol",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/es.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "./assets/images/splash.png",
+      "image": "./assets/images/es.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -21,12 +21,12 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "foregroundImage": "./assets/images/es.png",
         "backgroundColor": "#ffffff"
       }
     },
     "web": {
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/es.png"
     }
   }
 }
