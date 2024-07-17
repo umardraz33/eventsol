@@ -7,6 +7,8 @@ import {
     View,
     ScrollView,
     Platform,
+    Modal,
+    Alert
   } from "react-native";
   import React, { useState } from "react";
   import Spacing from "../constants/Spacing";
@@ -17,11 +19,43 @@ import {
   import { NativeStackScreenProps } from "@react-navigation/native-stack";
   import { RootStackParamList } from "../types";
   import AppTextInput from "../components/AppTextInput";
-  
+  import DatePicker from "react-native-modern-datepicker";
   type Props = NativeStackScreenProps<RootStackParamList, "BookEvent">;
   
   const BookEvent: React.FC<Props> = ({ navigation: { navigate } }) => {
     const [focused, setFocused] = useState<boolean>(false);
+    const [open, setOpen] = useState<boolean>(false);
+    const [startDate, setStartDate] = useState<string>("");
+    const [endDate, setEndDate] = useState<string>("");
+  
+    const [activeInput, setActiveInput] = useState<"start" | "end" | null>(null);
+  
+    const todayDate = new Date().toISOString().split('T')[0];
+  
+    function handleOnPress(input: "start" | "end") {
+      setActiveInput(input);
+      setOpen(true);
+    }
+  
+    function handleChange(selectedDate: string) {
+      const isValidDate = new Date(selectedDate) >= new Date(todayDate);
+  
+      if (activeInput === "start") {
+        if (isValidDate) {
+          setStartDate(selectedDate);
+        } else {
+          Alert.alert("Invalid Date", "Please select a date that is today or later.");
+        }
+      } else if (activeInput === "end") {
+        if (isValidDate) {
+          setEndDate(selectedDate);
+        } else {
+          Alert.alert("Invalid Date", "Please select a date that is today or later.");
+        }
+      }
+      setOpen(false);
+      setActiveInput(null);
+    }
   
     return (
       <ScrollView>
@@ -53,7 +87,7 @@ import {
                   textAlign: "center",
                 }}
               >
-                Book Events That Match Your Interests!{" "}
+                Book Events That Match Your Interests!
               </Text>
             </View>
             <View
@@ -62,9 +96,31 @@ import {
               }}
             >
               <AppTextInput placeholder="Name" />
-  
               <AppTextInput placeholder="Address" />
               <AppTextInput placeholder="Post code" />
+  
+              <TouchableOpacity onPress={() => handleOnPress("start")}>
+                <AppTextInput placeholder="Starting Date" value={startDate} editable={false} />
+              </TouchableOpacity>
+  
+              <TouchableOpacity onPress={() => handleOnPress("end")}>
+                <AppTextInput placeholder="Ending Date" value={endDate} editable={false} />
+              </TouchableOpacity>
+  
+              <Modal animationType="slide" transparent={true} visible={open}>
+                <View style={styles.centerAlign}>
+                  <View style={styles.modalView}>
+                    <DatePicker
+                      mode="calendar"
+                      selected={activeInput === "start" ? startDate : endDate}
+                      onDateChange={handleChange}
+                    />
+                    <TouchableOpacity onPress={() => setOpen(false)}>
+                      <Text>Close</Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              </Modal>
   
               <TextInput
                 style={[styles.textArea, focused && styles.focusedTextArea]}
@@ -138,7 +194,7 @@ import {
       width: "100%",
       padding: 10,
       borderRadius: 5,
-      textAlignVertical: "top", // Aligns text at the top of the text area
+      textAlignVertical: "top",
     },
     focusedTextArea: {
       borderWidth: 2,
@@ -147,6 +203,20 @@ import {
       shadowColor: Colors.primary,
       shadowOpacity: 0.5,
       shadowRadius: Spacing,
+    },
+    centerAlign: {
+      flex: 1,
+      justifyContent: "center",
+      alignItems: "center",
+      marginTop: 22,
+    },
+    modalView: {
+      marginTop: 20,
+      backgroundColor: "white",
+      borderRadius: 20,
+      width: "90%",
+      padding: 35,
+      alignItems: "center",
     },
   });
   
