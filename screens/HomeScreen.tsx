@@ -244,7 +244,7 @@ const HomeScreen: React.FC<Props> = ({ navigation: { navigate } }) => {
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={() => navigate("BookEvent")}
+              onPress={() => navigate("EventCards")}
               style={{
                 padding: Spacing * 2,
                 backgroundColor: Colors.primary,

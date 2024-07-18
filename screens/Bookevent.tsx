@@ -111,19 +111,19 @@ const BookEvent: React.FC<Props> = ({ navigation: { navigate } }) => {
 
             <TouchableOpacity onPress={() => handleOnPress("start")}>
               <AppTextInput
-                placeholder="Starting Date"
+                placeholder="Select Date"
                 value={startDate}
                 editable={false}
               />
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => handleOnPress("end")}>
+            {/* <TouchableOpacity onPress={() => handleOnPress("end")}>
               <AppTextInput
                 placeholder="Ending Date"
                 value={endDate}
                 editable={false}
               />
-            </TouchableOpacity>
+            </TouchableOpacity> */}
 
             <Modal animationType="slide" transparent={true} visible={open}>
               <View style={styles.centerAlign}>

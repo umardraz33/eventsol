@@ -16,6 +16,7 @@ import BookEvent from "../screens/Bookevent";
 
 import { RootStackParamList } from "../types";
 import ContactScreen from "../screens/ContactScreen";
+import EventCards from "../screens/EventCards";
 
 const theme = {
   ...DefaultTheme,
@@ -52,6 +53,7 @@ function RootNavigator() {
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="Contact" component={ContactScreen} />
       <Stack.Screen name="BookEvent" component={BookEvent} />
+      <Stack.Screen name="EventCards" component={EventCards} />
     </Stack.Navigator>
   );
 }
